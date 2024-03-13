@@ -1,0 +1,43 @@
+.game-card {
+  background: #152A36;
+  width: 165px;
+  height: 190px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  padding: 15px;
+  word-wrap: break-word; 
+  overflow: auto;
+}
+
+.game-card::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+.game-card::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #325b70;
+}
+
+.game-card::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2); */
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+
+.game-card__text {
+  color: #CCDEDB;
+  font-family: Gilroy;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.28px;
+  text-align: center;
+}
+
+.game-card_off {
+  background-image: url('../../img/game-card/card-off.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center center;
+}

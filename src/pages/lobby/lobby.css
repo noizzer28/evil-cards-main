@@ -1,0 +1,56 @@
+
+/* СТРАНИЦА ВЫБОРА ЛОББИ */
+.container_lobby {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.table-lobby {
+  text-align: center;
+  vertical-align: middle;
+}
+@media (max-width: 600px) {
+  .table-lobby .mobile-none {
+    display: none;
+  }
+}
+.table-lobby thead {
+  background: #182e3b;
+}
+.table-lobby thead th {
+  color: #fff;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.68px;
+  border: none;
+}
+.table-lobby tbody .table-lobby__name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+.table-lobby tbody tr {
+  border-bottom: 3px solid #182e3b;
+}
+
+.btn-lobby {
+  font-family: Gilroy Medium;
+  font-size: 0.9em;
+  padding: 2px 40px;
+  letter-spacing: normal;
+  position: relative;
+}
+.btn-lobby::before {
+  content: url("../../../public/img/plus.svg");
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 25px;
+  height: 25px;
+}

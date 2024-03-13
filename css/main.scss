@@ -1,0 +1,734 @@
+/*Обнуление стилей*/
+@import "_nullstyle";
+
+/*Подключение шрифтов*/
+@import url("../fonts/Gilroy/stylesheet.css");
+@import url("../fonts/BaronNeue/style.css");
+
+@import url("../fonts/AlegreyaSans/stylesheet.css");
+
+@import url("../fonts/Furore/stylesheet.css");
+
+/* Стили компонентов */
+@import url("../css/components/game-card.css");
+@import url("../css/components/game-card-evil.css");
+
+/*Шрифты*/
+$font-logo: Furore;
+$font-title-block: Baron Neue;
+$font-title-page: Gilroy Regular;
+$font-subtitle-page: Gilroy;
+$font-text: Gilroy Light;
+
+/*Палитра цветов*/
+$color-white: #fff;
+$color-light-blue: #ccdedb;
+$color-blue: #4EB5B5;
+$color-dark-blue: #138f87;
+$color-ashy: #325b70;
+$color-bg: #11212a;
+$color-container: #102430;
+$color-sub-bg: #182e3b; //$color-sub-bg: #152A36;
+
+@mixin fontStyle($color,
+    $font-family,
+    $font-size,
+    $font-style: normal,
+    $font-weight: 400,
+    $line-height: "",
+    $letter-spacing: ""
+
+) {
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}
+
+* {
+    @include fontStyle($color-light-blue, $font-text, calc(14px + 3 * (100vw - 320px) / 1620), normal, normal, 1.4, 0.050em);
+}
+
+%logoFont {
+    @include fontStyle($color-white, $font-logo, 20px, $line-height: 1.12);
+}
+
+%textFont {
+    @include fontStyle($color-light-blue, $font-text, calc(14px + 3 * (100vw - 320px) / 1620), normal, 400, 1.82, 0.1em);
+}
+
+%fontTitlePage {
+    @include fontStyle($color-blue, $font-title-page, calc(30px + 5 * (100vw - 320px) / 1620), normal, 600, normal, 0.11em);
+}
+
+%fontTitleBlock {
+    @include fontStyle($color-white, $font-title-block, calc(20px + 5 * (100vw - 320px) / 1620), normal, 400, normal, 0.050em);
+}
+
+%fontSubtitleBlock {
+    @include fontStyle($color-white, $font-subtitle-page, calc(17px + 5 * (100vw - 320px) / 1620), normal, 600, normal, 0.1em);
+}
+
+%fontA {
+    @include fontStyle($color-white, $font-text, calc(14px + 2 * (100vw - 320px) / 1620));
+}
+
+%styleA {
+    @extend %fontA;
+    color: $color-white !important;
+    transition: 0.2s ease;
+
+    &:hover {
+        color: $color-blue !important;
+    }
+}
+
+%wordwrap {
+    word-wrap: break-word;
+}
+
+body {
+    background: $color-bg;
+}
+
+span {
+    all: inherit;
+    display: inline;
+    padding: 0;
+}
+
+a,
+nav-item {
+    @extend %styleA;
+}
+
+ul {
+    padding-left: 30px !important;
+}
+
+i {
+    transition: inherit;
+}
+
+input {
+    background: $color-bg;
+    border: none;
+    border-radius: 5px;
+    color: $color-light-blue;
+}
+
+::-webkit-scrollbar {
+    width: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $color-blue;
+    background-clip: content-box;
+    border: 7px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+select {
+    background-color: $color-sub-bg !important;
+    background-image: url('../img/angle-down.svg') !important;
+    color: $color-white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-size: 1em !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+
+    option {
+        margin-bottom: 10px !important;
+    }
+}
+
+button {
+    background-color: $color-blue;
+    color: $color-white ;
+    border-radius: 5px !important;
+    border: 1px solid $color-blue;
+    padding: 0px 20px;
+    @extend %textFont;
+    transition: 0.2s ease;
+
+    &:hover {
+        background-color: $color-dark-blue;
+    }
+}
+
+.form-control {
+    background: $color-bg;
+    color: $color-light-blue;
+    border: none;
+    border-radius: 10px;
+
+    &:focus {
+        background: $color-bg;
+        color: $color-light-blue;
+    }
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid $color-light-blue;
+    transition: 0.2s ease;
+
+    p {
+        transition: inherit;
+    }
+
+    &:hover {
+        border-color: $color-blue;
+        color: $color-blue;
+        background: transparent;
+    }
+
+    &:hover>i,
+    &:hover>p {
+        color: $color-blue;
+    }
+}
+
+.btn-svg {
+    padding: 0;
+    line-height: normal;
+    background-color: transparent;
+    border: none;
+    opacity: 0.2;
+
+    &:hover {
+        background-color: transparent;
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+.btn-ashy {
+    background: $color-sub-bg;
+    border-color: $color-sub-bg;
+
+    &:hover {
+        background: $color-bg;
+    }
+}
+
+.container {
+    position: relative;
+    background: $color-container;
+    z-index: 10;
+    min-height: 100vh - 6.3vh; // Чтобы контейнер протягивался до конца страницы
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+
+    @media (min-width: 350px) and (max-width: 780px) {
+        max-width: 100%;
+    }
+}
+
+.container_lines {
+
+    &::before,
+    &::after {
+        content: "";
+        background: $color-blue;
+        position: absolute;
+        top: 35px;
+        bottom: 0;
+        left: 0;
+        width: 4px;
+    }
+
+    &::after {
+        left: calc(100% - 4px);
+        width: 4px;
+    }
+}
+
+.wrapper {
+    position: relative;
+}
+
+.dragon-left,
+.dragon-right {
+    position: absolute;
+    background-image: url('../img/dragon.svg');
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 300px;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 1%;
+}
+
+.dragon-right {
+    transform: scaleX(-1);
+    left: auto;
+    right: 1%;
+}
+
+
+.border-decor {
+    position: absolute;
+    top: 0px;
+
+    &_left {
+        left: 0px;
+    }
+
+    &_right {
+        left: calc(100% - 18px);
+        transform: scale(-1, 1);
+    }
+}
+
+.noHover {
+    pointer-events: none;
+}
+
+.text {
+    @extend %textFont;
+}
+
+.text-color-blue {
+    color: $color-blue;
+}
+
+.text_span {
+    color: $color-white;
+    font-weight: 500;
+}
+
+.title-blue {
+    text-align: center;
+    @extend %fontTitlePage;
+}
+
+.title-white {
+    text-align: center;
+    @extend %fontTitleBlock;
+}
+
+.subtitle {
+    @extend %fontSubtitleBlock;
+}
+
+.btn-active {
+    background: $color-blue !important;
+}
+
+.logo {
+    .logo__title {
+        width: 85px;
+        flex-shrink: 0;
+        @extend %logoFont;
+    }
+}
+
+.my-btn-close {
+    padding: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    background: transparent;
+    border: none;
+}
+
+.my-btn-close:hover {
+    background-color: $color-bg;
+}
+
+.modal-content {
+    background: $color-sub-bg;
+    padding: 20px;
+    border-radius: 15px;
+
+    label {
+        font-family: $font-subtitle-page;
+        font-weight: 500;
+    }
+
+    .form-control {
+        padding: 7px 15px;
+        font-size: 0.9em;
+    }
+}
+
+
+.my-modal-title {
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.8px;
+}
+
+.hr-line {
+    color: $color-ashy;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* СТРАНИЦА ВЫБОРА ЛОББИ */
+
+.container_lobby {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.table-lobby {
+    text-align: center;
+    vertical-align: middle;
+
+    @media (max-width: 600px) {
+        .mobile-none {
+            display: none;
+        }
+    }
+
+    thead {
+        background: $color-sub-bg;
+
+        th {
+            color: $color-white;
+            font-family: $font-subtitle-page;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 0.68px;
+            border: none;
+        }
+    }
+
+    tbody {
+        .table-lobby__name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100px;
+        }
+
+        tr {
+            border-bottom: 3px solid $color-sub-bg;
+        }
+    }
+}
+
+.btn-lobby {
+    font-family: Gilroy Medium;
+    font-size: 0.9em;
+    padding: 2px 40px;
+    letter-spacing: normal;
+    position: relative;
+
+    &::before {
+        content: url("../img/plus.svg");
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* СТРАНИЦА ВЫБОРА ИГРЫ */
+
+.btn-back {
+    position: absolute;
+    left: 20px;
+    width: 174px;
+    height: 45px;
+
+    @media (max-width: 600px) {
+        top: 23px;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+
+        p {
+            display: none !important;
+        }
+    }
+}
+
+.room-name {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: $color-white;
+}
+
+.players {
+    .title-white {
+        font-size: 1.4em !important;
+        margin-bottom: 15px;
+
+        span {
+            all: inherit;
+            display: inline;
+            color: $color-blue;
+        }
+    }
+
+    &__list {
+        width: 100%;
+        max-height: 630px; // !! КОЛХОЗ, ибо на мобилках явно макс. будет меньше
+        overflow: auto;
+    }
+
+    .form-select { // !! КОЛХОЗ, ПОТОМ ИСПРАВИТЬ
+        width: 95%;
+        margin-right: 15px;
+    }
+}
+
+.card-player {
+    background: $color-sub-bg;
+    padding: 5px 10px;
+    // flex-shrink: 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+
+    &__nick {
+        margin-right: 50px;
+        color: $color-blue;
+    }
+
+    &__btn-crown,
+    &__btn-close {
+        padding: 0;
+        margin-right: 4px;
+        line-height: normal;
+        display: flex;
+        background-color: transparent;
+        border: none;
+        opacity: 0.2;
+
+        &:hover {
+            background-color: transparent;
+            opacity: 1;
+            transform: scale(1.5);
+        }
+    }
+
+    &__btn-crown {
+        margin-bottom: 10px;
+    }
+
+    &__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+        background: #223C4B;
+        border-radius: 100%;
+        color: $color-sub-bg;
+        font-size: 2em;
+        font-weight: 600;
+        font-family: Gilroy;
+    }
+}
+
+.block-game {
+    label {
+        width: 100%;
+    }
+}
+
+.block-game__btns-manage {
+    button {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.games__title {
+    display: none;
+
+    @media (max-width: 1400px) {
+        & {
+            display: block;
+        }
+    }
+}
+
+.game {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        background: #152A36;
+
+        .game__btns {
+            opacity: 1;
+        }
+    }
+
+    &__input:checked + & {
+        background: #152A36;
+        box-shadow: 0 0 2px 2px $color-blue;
+    }
+
+    &__btns {
+        opacity: 0;
+        display: flex;
+        position: absolute;
+        right: 10px;
+        transition: 0.3s ease;
+    }
+
+    &__btn-back {
+        display: none;
+    }
+
+    &__card {
+        display: flex;
+    }
+
+    h6 {
+        font-size: 1em;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+}
+
+.settings {
+    
+    display: none;
+    flex-direction: column;
+    width: 100%;
+
+    button {
+        font-size: 0.9em;
+        width: 40%;
+    }
+
+    input[type="number"] {
+        background: #162731;
+        border-radius: 5px;
+        text-align: center;
+
+        border: 1px solid $color-ashy;
+    }
+
+    div {
+        margin-bottom: 10px;
+    }
+    &__title {
+        font-size: 1.2em !important;
+        color:  $color-white;
+        font-weight: 600;
+    }
+}
+
+.form-switch {
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    .form-check-input {
+        margin: 0;
+    }
+
+    .form-check-input:checked {
+        background-color: $color-blue;
+        border-color: $color-blue;
+    }
+
+    .form-switch .form-check-input { 
+        box-shadow: none;
+    }
+}
+
+.modal-game-help {
+    &__text {
+        max-height: 700px;
+        overflow: auto;
+        margin-left: 10px;
+    }
+
+    .modal-dialog {
+
+        max-width: 550px;
+
+        p {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+    }
+}
+
+
+.chat {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: $color-sub-bg;
+    border-radius: 15px;
+    padding: 20px;
+
+    &__content {
+        margin-top: -5px;
+        height: 100%;
+        max-height: 580px;
+        word-wrap: break-word; 
+        overflow: auto;
+        p {
+            font-size: 0.9em;
+        }
+    }
+
+    .title-white {
+        font-size: 1.3em;
+    }
+}
+
+.chat__input {
+    position: relative;
+    
+    input {
+        padding-left: 25px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    img {
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 5px;
+        margin-top: auto;
+        margin-bottom: auto;
+        transform: scale(-1, -1);
+    }
+
+}
